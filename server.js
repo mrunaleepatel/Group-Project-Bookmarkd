@@ -69,15 +69,17 @@ app.get("/", (req, res) => {
     res.json({hello: "world"})
 })
 
+// index //
 app.get("/bookmarks", async (req, res) => {
     try {
-      const bookmarks = await Bookmarks.find({});
+      const bookmark = await Bookmarks.find({});
       res.json(bookmarks);
     } catch (error) {
       res.status(400).json({ error });
     }
   });
 
+  // create //
   app.post("/bookmarks", async (req, res) => {
     try {
         const bookmark = await Bookmark.create(req.body)
@@ -103,7 +105,7 @@ app.put("/bookmarks/:id", async (req, res) => {
 // delete
 app.delete("/bookmarks/:id", async (req, res) => {
     try {
-        const Bookmark = await Bookmark.findByIdAndDelete(req.params.id)
+        const bookmark = await Bookmark.findByIdAndDelete(req.params.id)
         res.status(204).json(bookmark)
     } catch (error) {
         res.status(400).json({error})
