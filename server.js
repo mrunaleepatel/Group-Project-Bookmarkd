@@ -90,7 +90,7 @@ app.get("/bookmarks", async (req, res) => {
 
 //------JeMin------//
 // update
-app.put("/bookmark/:id", async (req, res) => {
+app.put("/bookmarks/:id", async (req, res) => {
     try {
         const bookmark = await Bookmark.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.json(bookmark)
@@ -101,9 +101,9 @@ app.put("/bookmark/:id", async (req, res) => {
 
 //------JeMin------//
 // delete
-app.delete("/bookmark/:id", async (req, res) => {
+app.delete("/bookmarks/:id", async (req, res) => {
     try {
-        const bookmark = await Bookmark.findByIdAndDelete(req.params.id)
+        const Bookmark = await Bookmark.findByIdAndDelete(req.params.id)
         res.status(204).json(bookmark)
     } catch (error) {
         res.status(400).json({error})
