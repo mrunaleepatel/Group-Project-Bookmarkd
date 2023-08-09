@@ -72,8 +72,8 @@ app.get("/", (req, res) => {
 // index //
 app.get("/bookmarks", async (req, res) => {
     try {
-      const bookmark = await Bookmarks.find({});
-      res.json(bookmarks);
+      const bookmark = await Bookmark.find({});
+      res.json(bookmark);
     } catch (error) {
       res.status(400).json({ error });
     }
@@ -83,7 +83,7 @@ app.get("/bookmarks", async (req, res) => {
   app.post("/bookmarks", async (req, res) => {
     try {
         const bookmark = await Bookmark.create(req.body)
-        res.json(bookmarks)
+        res.json(bookmark)
     }
     catch(error){
         res.status(400).json({ error })
