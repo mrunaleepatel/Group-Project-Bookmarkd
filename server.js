@@ -23,3 +23,24 @@ app.get("/", (req, res) => {
 // LISTENER
 ////////////////////////////
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+
+
+
+app.get("/bookmarks", async (req, res) => {
+    try {
+      const bookmarks = await Bookmarks.find({});
+      res.json(bookmarks);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  });
+
+  app.post("/bookmarks", async (req, res) => {
+    try {
+        const bookmark = await Bookmark.create(req.body)
+        res.json(bookmarks)
+    }
+    catch(error){
+        res.status(400).json({ error })
+    }
+})
