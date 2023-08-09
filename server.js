@@ -101,7 +101,7 @@ app.put("/bookmarks/:id", async (req, res) => {
     }
 })
 
-//------JeMin------//
+//------JeMin-------//
 // delete
 app.delete("/bookmarks/:id", async (req, res) => {
     try {
