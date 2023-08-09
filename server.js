@@ -69,9 +69,30 @@ app.get("/", (req, res) => {
     res.json({hello: "world"})
 })
 
+// index //
+app.get("/bookmarks", async (req, res) => {
+    try {
+      const bookmark = await Bookmarks.find({});
+      res.json(bookmarks);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  });
+
+  // create //
+  app.post("/bookmarks", async (req, res) => {
+    try {
+        const bookmark = await Bookmark.create(req.body)
+        res.json(bookmarks)
+    }
+    catch(error){
+        res.status(400).json({ error })
+    }
+})
+
 //------JeMin------//
 // update
-app.put("/bookmark/:id", async (req, res) => {
+app.put("/bookmarks/:id", async (req, res) => {
     try {
         const bookmark = await Bookmark.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.json(bookmark)
@@ -80,9 +101,9 @@ app.put("/bookmark/:id", async (req, res) => {
     }
 })
 
-//------JeMin------//
+//------JeMin-------//
 // delete
-app.delete("/bookmark/:id", async (req, res) => {
+app.delete("/bookmarks/:id", async (req, res) => {
     try {
         const bookmark = await Bookmark.findByIdAndDelete(req.params.id)
         res.status(204).json(bookmark)
@@ -96,24 +117,3 @@ app.delete("/bookmark/:id", async (req, res) => {
 // LISTENER
 ////////////////////////////
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
-
-
-
-app.get("/bookmarks", async (req, res) => {
-    try {
-      const bookmarks = await Bookmarks.find({});
-      res.json(bookmarks);
-    } catch (error) {
-      res.status(400).json({ error });
-    }
-  });
-
-  app.post("/bookmarks", async (req, res) => {
-    try {
-        const bookmark = await Bookmark.create(req.body)
-        res.json(bookmarks)
-    }
-    catch(error){
-        res.status(400).json({ error })
-    }
-})
