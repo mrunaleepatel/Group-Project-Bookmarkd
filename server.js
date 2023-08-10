@@ -91,6 +91,18 @@ app.get("/bookmarks", async (req, res) => {
 })
 
 //------JeMin------//
+
+// show //
+
+app.get("/bookmarks/:id", async (req, res) => {
+    try {
+      const bookmark = await Bookmark.findById(req.params.id);
+      res.json(bookmark);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+});
+
 // update
 app.put("/bookmarks/:id", async (req, res) => {
     try {
